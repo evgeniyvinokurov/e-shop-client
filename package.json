@@ -1,0 +1,27 @@
+{
+  "name": "e-shop-client",
+  "version": "2.0.0",
+  "description": "Vue.js клиент для магазина",
+  "repository": {
+    "type": "git",
+    "url": "https://gitflic.ru/project/evgeniyvinokurov/e-shop-client"
+  },
+  "readme": "README.md",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.92.1"
+  }
+}
