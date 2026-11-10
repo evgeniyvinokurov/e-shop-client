@@ -3,3 +3,8 @@
 * vue.js  
 * генерация картинок  
 * сборка webpack  
+  
+  
+<p align="left">
+ <img width="70%"  src="e-shop-client.jpg" alt="e-shop-client"/>
+</p>
