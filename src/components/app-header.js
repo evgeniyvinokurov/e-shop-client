@@ -9,18 +9,13 @@ let Main = Vue.component('app-header', {
           '<div class="menu-item">E-Shop <span class="title-327" :style="{backgroundColor: logoColor}">327</span></div>'+
         '</div>'+
         '<div class="categories"><div class="categories__title" @click="showCategories()" :style="{backgroundColor: catBColor, color: catColor}">Categories</div></div>'+
-        '<div class="filter" @click="showFilter()" :style="{backgroundColor: filterBColor}">' + 
-          '<div class="f__count" v-bind:class="{hide: filtered == 0}" :style="{color: filterColor}">Filtered: {{filtered}}</div>'+
-          '<div class="f" v-bind:class="{hide: filtered != 0}" :style="{color: filterColor}">Filter</div>'+
-        '</div>'+
+       
         '<div class="cart"><div class="cart__title" @click="showCart()" :style="{backgroundColor: cartBColor, color: cartColor}">Cart</div></div>'+
       '</div>',
     data: function () {
         return {
           shownCart: false,
-          shownFilter: false,
           shownCategories: false,
-          filtered: 0,
           length: 0,
           logoColor: "",
           cartBColor: "",
@@ -37,8 +32,6 @@ let Main = Vue.component('app-header', {
       self.cartColor = "black";
       self.catBColor = "transparent";
       self.catColor = "black";
-      self.filterBColor = "transparent";
-      self.filterColor = "black";
       
       this.$root.$on("hideCart",  function(){
           self.shownCart = false;
@@ -50,16 +43,6 @@ let Main = Vue.component('app-header', {
           this.$root.$emit("hideCategories");          
       });
 
-      this.$root.$on("hideFilter",  function(){
-          self.shownFilter = false;
-      });
-
-      this.$root.$on("showFilter",  function(){
-          self.shownFilter = true;
-          
-          this.$root.$emit("hideCart"); 
-          this.$root.$emit("hideCategories"); 
-      });
       
       this.$root.$on("hideCategories",  function(){
           self.shownCategories = false;
@@ -70,23 +53,6 @@ let Main = Vue.component('app-header', {
           
           self.$root.$emit("hideCart"); 
           self.$root.$emit("hideFilter");    
-      });
-
-
-      this.$root.$on("headerCount",  function(data){
-          if (data) {
-            self.filtered = data.filteredProductsCount;
-          } else {
-            self.filtered = 0;          
-          }
-          
-          if (self.filtered> 0) {
-	          self.filterBColor = ToolsService.getFromWarmColors();
-	          self.filterColor = "white";
-	       } else {
-	          self.filterBColor = "transparent";
-	          self.filterColor = "black";
-	       }
       });
 
       this.$root.$on("recount", function(){
@@ -116,13 +82,6 @@ let Main = Vue.component('app-header', {
             } else {
               this.$root.$emit("hideCart");        
             }
-        }
-      },
-      showFilter: function(){
-        if(!this.shownFilter) {
-          this.$root.$emit("showFilter");
-        } else {
-          this.$root.$emit("hideFilter");        
         }
       }
     }

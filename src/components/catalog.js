@@ -17,12 +17,20 @@ let Main = Vue.component('catalog', {
       	'<span class="browse__category-item" v-for="(item, index) in categories" v-bind:class="{ selected: selectedCategory === item}" v-on:click="selectCategory(item)">{{item}}</span>'+
       '</div>'+
       '<div class="sort">'+
+        '<div class="filter" @click="showFilter()" :style="{backgroundColor: filterBColor}">' + 
+          '<div class="f__count" v-bind:class="{hide: filtered == 0}" :style="{color: filterColor}">Filtered: {{filtered}}</div>'+
+          '<div class="f" v-bind:class="{hide: filtered != 0}" :style="{color: filterColor}">Filter</div>'+
+        '</div>'+
       	'<span class="sort-title">Sort: </span>'+
       	'<span class="sort-item" v-bind:class="{ selected: direction === sort.price.asc.direction && by === sort.price.asc.by}" v-on:click="sortCatalog(sort.price.asc)">Price up</span>'+
       	'<span class="sort-item" v-bind:class="{ selected: direction === sort.price.desc.direction && by === sort.price.desc.by}" v-on:click="sortCatalog(sort.price.desc)">Price down</span>'+
       	'<span class="sort-item" v-bind:class="{ selected: direction === sort.alph.asc.direction && by === sort.alph.asc.by}" v-on:click="sortCatalog(sort.alph.asc)">A-z</span>'+
       	'<span class="sort-item" v-bind:class="{ selected: direction === sort.alph.desc.direction && by === sort.alph.desc.by}" v-on:click="sortCatalog(sort.alph.desc)">Z-a</span>'+
       '</div>'+
+
+
+			'<products-filter></products-filter>' +
+     
       '<div class="products-list"><div v-for="(item, index) in products" class="product-card" v-on:click="showProduct(item)">'+
       '<img  :src="item.url" />'+
   		'<div class="product-card__name">{{item.name}}</div>'+
@@ -45,6 +53,8 @@ let Main = Vue.component('catalog', {
           bigImageUrl: "",
           bigImageSize: 320,
           bestPrice: 0,
+          shownFilter: false,
+          filtered: 0,
           sort:{
             "price": {
               "asc": {"direction": "asc" , "by": "price"},
@@ -59,6 +69,9 @@ let Main = Vue.component('catalog', {
     },
   	created: function() {
       var self = this;
+
+      self.filterBColor = "transparent";
+      self.filterColor = "black";
       
       this.bigImageUrl = PicsService.finallyGetPicUrl(this.bigImageSize).final;
       
@@ -67,6 +80,34 @@ let Main = Vue.component('catalog', {
   		this.bestPrice = ToolsService.getRandomFloat(0, 1000, 2);
 
       this.categories = ProductsService.getCategories();
+
+      this.$root.$on("hideFilter",  function(){
+          self.shownFilter = false;
+      });
+
+      this.$root.$on("showFilter",  function(){
+          self.shownFilter = true;
+          
+          this.$root.$emit("hideCart"); 
+          this.$root.$emit("hideCategories"); 
+
+      });      
+      
+      this.$root.$on("headerCount",  function(data){
+          if (data) {
+            self.filtered = data.filteredProductsCount;
+          } else {
+            self.filtered = 0;          
+          }
+          
+          if (self.filtered> 0) {
+	          self.filterBColor = ToolsService.getFromWarmColors();
+	          self.filterColor = "white";
+	       } else {
+	          self.filterBColor = "transparent";
+	          self.filterColor = "black";
+	       }
+      });
 
       this.$root.$on("orderCreated", function(){
         self.orderCreated = true;
@@ -139,6 +180,13 @@ let Main = Vue.component('catalog', {
           this.$root.$emit("clearFilterEl");
           this.products = ProductsService.productsAll = ProductsService.productsAllComplete;
           this.$root.$emit("headerCount", { filteredProductsCount: ProductsService.productsAllComplete.length  - this.products.length });
+      },
+      showFilter: function(){
+        if(!this.shownFilter) {
+          this.$root.$emit("showFilter");
+        } else {
+          this.$root.$emit("hideFilter");        
+        }
       }
     }
 })
