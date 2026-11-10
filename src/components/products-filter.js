@@ -3,7 +3,7 @@ import Vue from '../../lib/vue.js';
 import { ToolsService } from '../services/toolsService.js';
 import { ProductsService } from '../services/productsService.js';
 
-let Main = Vue.component('products-filter', {
+let ProductsFilter = Vue.component('products-filter', {
     template: '<div class="filter-main" v-bind:class="{hide: hiddenFilter}">'+
         '<div class="filter__row">'+
           '<div class="filter__by-title">By title:</div>'+
@@ -75,4 +75,4 @@ let Main = Vue.component('products-filter', {
     }
 })
 
-export { Main };
+export { ProductsFilter };

@@ -1,9 +1,9 @@
 import Vue from '../../lib/vue.js';
 
-import CartItems from '../components/cart-items.js';
-import CartTotalConfirm from '../components/cart-total-confirm.js';
+import { CartItems } from '../components/cart-items.js';
+import { CartTotalConfirm } from '../components/cart-total-confirm.js';
 
-let Main = Vue.component('cart', {
+let Cart = Vue.component('cart', {
   	template: 
 			'<div class="cart-main" v-bind:class="{hide: hiddenCart}">'+
         '<cart-items></cart-items>'+
@@ -27,4 +27,4 @@ let Main = Vue.component('cart', {
     }
 })
 
-export { Main };
+export { Cart };

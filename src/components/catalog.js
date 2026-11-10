@@ -1,12 +1,12 @@
 import Vue from '../../lib/vue.js';
 
-import Modal from './modal.js';
+import { Modal } from './modal.js';
 
 import { ToolsService } from '../services/toolsService.js';
 import { ProductsService } from '../services/productsService.js';
 import { PicsService } from '../services/picsService.js';
 
-let Main = Vue.component('catalog', {
+let Catalog = Vue.component('catalog', {
   	template: '<div><div class="big-product-card">'+
                       '<div class="big-product"><img :src="bigImageUrl"/></div>'+
                       '<div class="big-product"><div class="big-product--text">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.</div><div class="big-price"><div class="big-price__digits">${{bestPrice}}</div><div class="big-price__words">best price</div></div></div>'+                                        
@@ -191,4 +191,4 @@ let Main = Vue.component('catalog', {
     }
 })
 
-export { Main };
+export { Catalog };

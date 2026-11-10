@@ -3,7 +3,7 @@ import Vue from '../../lib/vue.js';
 import { ToolsService } from '../services/toolsService.js';
 import { ProductsService } from '../services/productsService.js';
 
-let Main = Vue.component('cart-items', {
+let CartItems = Vue.component('cart-items', {
   	template: 
 			'<div class="cart-items">'+
           '<div v-on:click="click()" class="cart-items__message">You have {{products.length}} products in your cart!!!</div>'+
@@ -62,4 +62,4 @@ let Main = Vue.component('cart-items', {
     }
 })
 
-export { Main };
+export { CartItems };

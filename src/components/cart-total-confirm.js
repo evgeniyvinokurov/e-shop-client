@@ -3,7 +3,7 @@ import Vue from '../../lib/vue.js';
 import { ToolsService } from '../services/toolsService.js';
 import { ProductsService } from '../services/productsService.js';
 
-let Main = Vue.component('cart-total-confirm', {
+let CartTotalConfirm = Vue.component('cart-total-confirm', {
   	template: 
 			'<div><div class="cart-total" v-bind:class="{ hide: hiddenTotal }">'+
           '<div class="cart-total__price">Total: {{total}}</div>'+      
@@ -60,4 +60,4 @@ let Main = Vue.component('cart-total-confirm', {
     }
 })
 
-export { Main };
+export { CartTotalConfirm };

@@ -3,7 +3,7 @@ import Vue from '../../lib/vue.js';
 import { ProductsService } from '../services/productsService.js';
 import { ToolsService } from '../services/toolsService.js';
 
-let Main = Vue.component('app-header', {
+let AppHeader = Vue.component('app-header', {
   	template: '<div class="header">'+
         '<div class="menu">'+
           '<div class="menu-item">E-Shop <span class="title-327" :style="{backgroundColor: logoColor}">327</span></div>'+
@@ -87,4 +87,4 @@ let Main = Vue.component('app-header', {
     }
 })
 
-export { Main };
+export { AppHeader };

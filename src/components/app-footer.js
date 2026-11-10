@@ -2,7 +2,7 @@ import Vue from '../../lib/vue.js';
 
 import { ProductsService } from '../services/productsService.js';
 
-let Main = Vue.component('app-footer', {
+let AppFooter = Vue.component('app-footer', {
   	template: '<div class="footer">'+
           '<div class="menu">'+
             '<div class="menu-item">Delivery and Prices</div>'+
@@ -32,4 +32,4 @@ let Main = Vue.component('app-footer', {
     }
 })
 
-export { Main };
+export { AppFooter };

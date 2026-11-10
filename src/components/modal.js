@@ -1,6 +1,6 @@
 import Vue from '../../lib/vue.js';
 
-let Main = Vue.component('modal', {
+let Modal = Vue.component('modal', {
   	template: 
 		'<div id="myModal" class="modal" v-bind:class="{hide: hideModal}">'+
 		  '<div class="modal-content">'+		  	
@@ -48,5 +48,5 @@ let Main = Vue.component('modal', {
     }
 })
 
-export { Main };
+export { Modal };
 

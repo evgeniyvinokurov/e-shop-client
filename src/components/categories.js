@@ -2,7 +2,7 @@ import Vue from '../../lib/vue.js';
 
 import { ProductsService } from '../services/productsService.js';
 
-let Main = Vue.component('categories', {
+let Categories = Vue.component('categories', {
   	template: 
 		'<div class="categories-main" v-bind:class="{hide: hiddenCategories}">'+
 			'<div class="category" v-for="name in categories"><span>{{name}}</span></div>'+
@@ -28,4 +28,4 @@ let Main = Vue.component('categories', {
     }
 })
 
-export { Main };
+export { Categories };
